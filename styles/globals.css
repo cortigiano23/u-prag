@@ -1,0 +1,696 @@
+/* Reset and base styles */
+@font-face {
+  font-family: "VAFLE Condensed";
+  src: url("/fonts/vafle_condensed-webfont.woff2") format("woff2"),
+       url("/fonts/vafle_condensed-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #000000;
+  color: #ffffff;
+  font-family: "VAFLE Condensed", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+button,
+input,
+textarea,
+select {
+  font-family: inherit;
+}
+
+/* Site header */
+.site-header {
+  height: 60px;
+  display: flex;
+  align-items: center;
+  padding: 0 2rem;
+  position: relative;
+  border-bottom: none;
+}
+
+.site-header h1 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 400;
+  letter-spacing: -0.025em;
+  text-transform: uppercase;
+}
+
+.site-header nav {
+  display: flex;
+  gap: 2rem;
+  margin-right: 68px;
+}
+
+.site-header nav a {
+  text-transform: uppercase;
+}
+
+.site-nav-link {
+  position: relative;
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 1.25rem;
+  line-height: 1.2;
+  transition: color 0.2s ease;
+}
+
+.site-nav-link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  width: 100%;
+  top: calc(1em + 4px);
+  height: 1px;
+  background-color: transparent;
+  transition: background-color 0.2s ease;
+}
+
+.site-nav-link:hover::after,
+.site-nav-link--active::after {
+  background-color: #ffffff;
+}
+
+footer h1 {
+  text-transform: uppercase;
+}
+
+/* Layout */
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+  .container {
+    flex-direction: row;
+    gap: 0;
+    padding: 2rem 2rem 2rem 6rem;
+  }
+}
+
+/* Sidebar */
+.sidebar {
+  width: 100%;
+  padding-top: 4.5rem;
+}
+
+@media (min-width: 768px) {
+  .sidebar {
+    width: 280px;
+    flex-shrink: 0;
+  }
+}
+
+.sidebar h2 {
+  font-weight: 600;
+  margin-bottom: 3rem;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Form elements */
+input[type="text"],
+input[type="number"],
+input[type="range"] {
+  background-color: #000000;
+  color: #ffffff;
+  font-size: 0.875rem;
+  font-family: "VAFLE Condensed", sans-serif;
+}
+
+input[type="text"] {
+  width: 100%;
+  border: none;
+  border-bottom: 4px solid #ffffff;
+  padding: 0.5rem;
+  margin-bottom: 1.5rem;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+}
+
+input[type="text"]::placeholder {
+  color: #ffffff;
+  font-weight: 600;
+}
+
+/* Range input styles */
+input[type="range"] {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 2px;
+  background: #404040;
+  border-radius: 2px;
+  outline: none;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  background: #ffffff;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  background: #ffffff;
+  border-radius: 50%;
+  cursor: pointer;
+  border: none;
+}
+
+input[type="range"]:focus {
+  outline: none;
+}
+
+input[type="range"]:focus::-webkit-slider-thumb {
+  background: #ffffff;
+}
+
+input[type="range"]:focus::-moz-range-thumb {
+  background: #ffffff;
+}
+
+/* Search container */
+.search-container {
+  position: relative;
+  width: 100%;
+}
+
+.search-icon {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
+  pointer-events: none;
+  opacity: 0.8;
+}
+
+/* Table */
+.table-container {
+  width: 100%;
+  margin-bottom: 2rem;
+}
+
+@media (min-width: 768px) {
+  .table-container:not(.live-gigs-table) {
+    width: calc(100% - 280px - 4rem);
+  }
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+th, td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  text-align: left;
+  vertical-align: middle;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+th {
+  font-weight: 500;
+  font-size: 1.125rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+thead th {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  vertical-align: bottom;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+/* Title column */
+td:first-child, th:first-child {
+  width: 18%;
+  white-space: normal;
+  padding-right: 0;
+}
+
+/* Info column */
+th:nth-child(2) {
+  width: 28px;
+  padding-left: 0;
+  padding-right: 0;
+  position: relative;
+  left: -2rem;
+  text-align: left;
+  letter-spacing: 0;
+  overflow: visible;
+}
+
+td:nth-child(2) {
+  width: 28px;
+  padding: 0.75rem 0;
+  position: relative;
+  left: -2rem;
+  text-align: left;
+}
+
+@media (min-width: 768px) {
+  .table-container.table-container--uprag {
+    width: 100%;
+    overflow: visible;
+  }
+}
+
+/* U-Prag player — clean 7-column layout, no SoundTrek position hacks */
+.table-container--uprag {
+  overflow: visible;
+  --uprag-col-shift: 5.5rem;
+}
+
+.table-container--uprag th,
+.table-container--uprag td {
+  position: static !important;
+  left: auto !important;
+  transform: none !important;
+}
+
+.table-container--uprag th:nth-child(1),
+.table-container--uprag td:nth-child(1) {
+  width: 16%;
+  white-space: nowrap;
+  overflow: visible;
+  padding-right: 0.5rem;
+}
+
+.table-container--uprag td:nth-child(1) > div {
+  flex-wrap: nowrap;
+  gap: 0.5rem;
+}
+
+.table-container--uprag td:nth-child(1) span {
+  white-space: nowrap;
+}
+
+.table-container--uprag th:nth-child(2),
+.table-container--uprag td:nth-child(2) {
+  width: calc(3rem + 28px);
+  min-width: calc(3rem + 28px);
+  max-width: calc(3rem + 28px);
+  padding-left: 3rem !important;
+  padding-right: 0 !important;
+  overflow: visible;
+  white-space: nowrap;
+}
+
+.table-container--uprag th:nth-child(3),
+.table-container--uprag td:nth-child(3) {
+  width: 25%;
+  text-align: left;
+  white-space: nowrap;
+  overflow: visible;
+  padding-left: var(--description-align-offset, 0);
+  padding-right: 0.5rem;
+}
+
+.table-container--uprag th:nth-child(4),
+.table-container--uprag td:nth-child(4) {
+  width: 58px;
+  text-align: center;
+  padding-left: 0;
+  padding-right: 0.5rem;
+  white-space: nowrap;
+  overflow: visible;
+  position: relative;
+  z-index: 2;
+}
+
+.table-container--uprag th:nth-child(5),
+.table-container--uprag td:nth-child(5) {
+  width: 3.5rem;
+  min-width: 3.5rem;
+  text-align: left;
+  padding-left: var(--bpm-align-offset, 0px) !important;
+  padding-right: 0;
+  white-space: nowrap;
+  overflow: visible;
+  position: static !important;
+  left: auto !important;
+  z-index: 1;
+}
+
+.table-container--uprag th:nth-child(6),
+.table-container--uprag td:nth-child(6) {
+  width: 64px;
+  text-align: left;
+  padding-left: var(--video-align-offset, 0px);
+  padding-right: 0;
+  white-space: nowrap;
+  overflow: visible;
+}
+
+.table-container--uprag th:nth-child(7),
+.table-container--uprag td:nth-child(7) {
+  width: auto;
+  padding-left: var(--featuring-align-offset, 1rem);
+  padding-right: 0;
+  white-space: pre-line;
+  overflow: visible;
+  text-overflow: clip;
+  line-height: 1.45;
+  vertical-align: top;
+  font-size: 0.8125rem;
+  letter-spacing: normal;
+}
+
+/* Description column */
+td:nth-child(3) {
+  width: 16%;
+  white-space: normal;
+  padding-left: 0.25rem;
+  padding-right: 0.25rem;
+  position: relative;
+  left: -0.5rem;
+}
+
+th:nth-child(3) {
+  width: 16%;
+  padding-left: 0.25rem;
+  padding-right: 0.25rem;
+  position: relative;
+  left: -0.5rem;
+}
+
+/* Length column */
+td:nth-child(4) {
+  width: 58px;
+  text-align: center;
+  padding: 0.75rem 0;
+  position: relative;
+  left: -1rem;
+  overflow: visible;
+  white-space: nowrap;
+}
+
+th:nth-child(4) {
+  width: 58px;
+  text-align: center;
+  padding-left: 0;
+  padding-right: 0;
+  position: relative;
+  left: -1rem;
+  overflow: visible;
+  white-space: nowrap;
+}
+
+/* BPM column */
+td:nth-child(5) {
+  width: 38px;
+  text-align: center;
+  padding-left: 0.5rem;
+  padding-right: 0;
+  position: relative;
+  left: 1.75rem;
+  overflow: visible;
+}
+
+th:nth-child(5) {
+  width: 38px;
+  text-align: center;
+  padding-left: 0.5rem;
+  padding-right: 0;
+  position: relative;
+  left: 1.75rem;
+  overflow: visible;
+}
+
+/* Video column */
+td:nth-child(6) {
+  width: 64px;
+  text-align: center;
+  padding-left: 0;
+  padding-right: 0;
+  position: relative;
+  left: 4.25rem;
+  overflow: visible;
+}
+
+th:nth-child(6) {
+  width: 64px;
+  text-align: center;
+  padding-left: 0;
+  padding-right: 0;
+  position: relative;
+  left: 4.25rem;
+  overflow: visible;
+}
+
+/* Featuring column */
+td:nth-child(7) {
+  width: 239px;
+  white-space: pre-line;
+  font-size: 0.8125rem;
+  line-height: 1.15;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  padding-left: 7.25rem;
+  vertical-align: middle;
+}
+
+th:nth-child(7) {
+  width: 239px;
+  font-size: 0.8125rem;
+  line-height: 1.15;
+  padding-left: 7.25rem;
+}
+
+/* Download column */
+td:nth-child(8), th:nth-child(8) {
+  width: 150px;
+  text-align: right;
+  white-space: nowrap;
+  overflow: visible;
+}
+
+/* U-Prag Live gigs — standalone 5-column layout */
+.live-gigs-table {
+  width: 100%;
+  margin: 0;
+}
+
+.live-gigs-table table {
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+}
+
+.live-gigs-table th,
+.live-gigs-table td {
+  position: static !important;
+  left: auto !important;
+  transform: none !important;
+  white-space: normal;
+  overflow: hidden;
+  text-overflow: clip;
+  text-align: left;
+  padding: 0.75rem 1rem;
+}
+
+.live-gigs-table .live-col-date {
+  width: 14%;
+  padding-right: 0.5rem;
+}
+
+.live-gigs-table .live-col-time {
+  width: 10%;
+  white-space: nowrap;
+}
+
+.live-gigs-table .live-col-place {
+  width: auto;
+}
+
+.live-gigs-table .live-col-city {
+  width: 12%;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.live-gigs-table .live-col-tickets {
+  width: 15%;
+  white-space: nowrap;
+  text-align: right;
+  padding-right: 1rem;
+}
+
+td {
+  font-size: 1.125rem;
+  letter-spacing: -0.01em;
+}
+
+tr:last-child td {
+  border-bottom: none;
+}
+
+/* Download buttons container */
+td:last-child > div {
+  display: inline-flex;
+  gap: 0.5rem;
+  justify-content: flex-end;
+  min-width: 100%;
+}
+
+/* Play button and title layout */
+.play-button {
+  display: inline-block;
+  margin-right: 0.5rem;
+  vertical-align: middle;
+  border-radius: 50%;
+}
+
+.play-button.hovered {
+  background-color: #2563eb !important;
+}
+
+.title-text {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+/* Title column content */
+td:first-child > div {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Ensure title text is visible */
+td:first-child span {
+  white-space: normal;
+  word-break: break-word;
+}
+
+.track-title {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  color: white;
+  text-decoration: none;
+  line-height: inherit;
+  padding-top: 2px;
+}
+
+.track-title::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  width: 100%;
+  top: calc(1em + 2px);
+  height: 1px;
+  background-color: transparent;
+  transition: background-color 0.2s ease;
+}
+
+.track-title:hover::after {
+  background-color: #ffffff;
+}
+
+/* Featuring */
+.tag {
+  display: inline-block;
+  background-color: #404040;
+  color: #ffffff;
+  font-size: 1rem;
+  padding: 0.25rem 0.5rem;
+  margin-right: 0.25rem;
+  border-radius: 9999px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+/* Buttons */
+.download-button {
+  background-color: #000000;
+  color: #ffffff;
+  padding: 0.25rem 0.75rem;
+  border-radius: 4px;
+  font-size: 0.875rem;
+  text-decoration: none;
+  display: inline-block;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  transition: background-color 0.2s ease;
+  border: 1px solid #ffffff;
+}
+
+.download-button:hover {
+  background-color: #2563eb;
+  border-color: #2563eb;
+}
+
+/* Audio player */
+audio {
+  width: 100%;
+  margin-top: 1rem;
+}
+
+/* Checkboxes */
+input[type="checkbox"] {
+  accent-color: #2563eb;
+}
+
+/* Labels */
+label {
+  display: block;
+  font-weight: 500;
+  margin-bottom: 0.25rem;
+  font-size: 0.875rem;
+  letter-spacing: -0.01em;
+}
+
+/* BPM inputs container */
+.bpm-inputs {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.bpm-inputs input {
+  width: 4rem;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loading-spinner {
+  animation: spin 1s linear infinite;
+}
