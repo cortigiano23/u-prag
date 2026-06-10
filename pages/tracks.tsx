@@ -1,5 +1,5 @@
 import React from "react";
-import TracksTable from "../components/TracksTable";
+import ResponsiveTracksTable from "../components/ResponsiveTracksTable";
 import Image from "next/image";
 import Footer from "@/components/Footer";
 
@@ -65,7 +65,7 @@ export default function TracksPage() {
         </div>
       </div>
 
-      <TracksTable />
+      <ResponsiveTracksTable />
       
       <Footer />
     </>

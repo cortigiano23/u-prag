@@ -34,6 +34,7 @@ export default function Home() {
         <UpragCatalog
           onPlayingTrackChange={setPlayingTrackId}
           onBackgroundTrackChange={setBackgroundTrackId}
+          backgroundTrackId={backgroundTrackId}
         />
         <SiteFooter />
       </div>

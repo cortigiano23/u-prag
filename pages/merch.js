@@ -27,9 +27,10 @@ export default function Merch() {
           flex: 1,
         }}
       >
-        <SiteHeader titleSuffix=" — merch" activeItem="merch" />
+        <SiteHeader activeItem="merch" />
 
         <div
+          className="merch-content"
           style={{
             flex: 1,
             display: 'flex',

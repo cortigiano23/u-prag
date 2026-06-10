@@ -32,6 +32,29 @@ const placeLinkStyle: React.CSSProperties = {
   transition: 'all 0.2s',
 };
 
+function renderPlace(gig: (typeof liveGigs)[number]) {
+  if (gig.placeUrl) {
+    return (
+      <a
+        href={gig.placeUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        style={placeLinkStyle}
+        onMouseEnter={(e) => {
+          e.currentTarget.style.borderBottom = '1px solid #ffffff';
+        }}
+        onMouseLeave={(e) => {
+          e.currentTarget.style.borderBottom = '1px solid transparent';
+        }}
+      >
+        {gig.place}
+      </a>
+    );
+  }
+
+  return gig.place;
+}
+
 export default function LiveGigsTable() {
   return (
     <section
@@ -54,7 +77,7 @@ export default function LiveGigsTable() {
         U-Prag Live
       </h2>
 
-      <div className="live-gigs-table" style={{ width: '100%' }}>
+      <div className="live-gigs-desktop live-gigs-table" style={{ width: '100%' }}>
         <table style={{ width: '100%' }}>
           <thead>
             <tr>
@@ -80,26 +103,7 @@ export default function LiveGigsTable() {
               <tr key={gig.id} style={{ backgroundColor: 'transparent' }}>
                 <td className="live-col-date">{gig.date}</td>
                 <td className="live-col-time">{gig.time}</td>
-                <td className="live-col-place">
-                  {gig.placeUrl ? (
-                    <a
-                      href={gig.placeUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      style={placeLinkStyle}
-                      onMouseEnter={(e) => {
-                        e.currentTarget.style.borderBottom = '1px solid #ffffff';
-                      }}
-                      onMouseLeave={(e) => {
-                        e.currentTarget.style.borderBottom = '1px solid transparent';
-                      }}
-                    >
-                      {gig.place}
-                    </a>
-                  ) : (
-                    gig.place
-                  )}
-                </td>
+                <td className="live-col-place">{renderPlace(gig)}</td>
                 <td className="live-col-city">{gig.city}</td>
                 <td className="live-col-tickets">
                   <a
@@ -119,6 +123,33 @@ export default function LiveGigsTable() {
                     TICKETS
                   </a>
                 </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      <div className="live-gigs-mobile live-gigs-table" style={{ width: '100%' }}>
+        <table style={{ width: '100%' }}>
+          <thead>
+            <tr>
+              <th className="live-col-date" style={headerCellStyle}>
+                Date
+              </th>
+              <th className="live-col-time" style={headerCellStyle}>
+                Time
+              </th>
+              <th className="live-col-place" style={headerCellStyle}>
+                Place
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {liveGigs.map((gig) => (
+              <tr key={gig.id} style={{ backgroundColor: 'transparent' }}>
+                <td className="live-col-date">{gig.date}</td>
+                <td className="live-col-time">{gig.time}</td>
+                <td className="live-col-place">{renderPlace(gig)}</td>
               </tr>
             ))}
           </tbody>

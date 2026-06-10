@@ -1,25 +1,16 @@
 'use client';
 
 import Link from 'next/link';
-import { useRouter } from 'next/router';
 import SiteNav, { NavActiveItem } from '@/components/SiteNav';
 import { useSiteContext } from '@/components/SiteContext';
 
 type SiteHeaderProps = {
-  titleSuffix?: string;
   activeItem?: NavActiveItem;
 };
 
-export default function SiteHeader({
-  titleSuffix = '',
-  activeItem,
-}: SiteHeaderProps) {
-  const router = useRouter();
+export default function SiteHeader({ activeItem }: SiteHeaderProps) {
   const context = useSiteContext();
   const isSoundTrek = context === 'soundtrek';
-  const onUpragLanding = router.pathname === '/';
-  const useSoundTrekBranding = isSoundTrek && !onUpragLanding;
-  const homeHref = onUpragLanding ? '/' : isSoundTrek ? '/soundtrek' : '/';
 
   return (
     <div
@@ -29,33 +20,10 @@ export default function SiteHeader({
         width: '100%',
       }}
     >
-      <header
-        className="site-header"
-        style={{
-          padding: '0 32px 0 6rem',
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-        }}
-      >
+      <header className="site-header site-bar-row">
         <h1>
-          <Link href={homeHref} style={{ textDecoration: 'none', color: 'inherit' }}>
-            {useSoundTrekBranding ? (
-              <>
-                <span style={{ fontWeight: '400' }}>SoundTrek</span>
-                <span style={{ fontWeight: '400' }}> by U-Prag{titleSuffix}</span>
-              </>
-            ) : onUpragLanding ? (
-              <>
-                <span style={{ fontWeight: '400' }}>SoundTrek</span>
-                <span style={{ fontWeight: '400' }}> by U-Prag — U-PRAG.CZ</span>
-              </>
-            ) : (
-              <span style={{ fontWeight: '400' }}>
-                U-Prag
-                {titleSuffix}
-              </span>
-            )}
+          <Link href="/" style={{ textDecoration: 'none', color: 'inherit' }}>
+            <span style={{ fontWeight: '400' }}>U-PRAG</span>
           </Link>
         </h1>
         <SiteNav hideSoundTrek={!isSoundTrek} activeItem={activeItem} />

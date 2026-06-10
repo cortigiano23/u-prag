@@ -272,12 +272,15 @@ export default function AudioPlayer({ track, onClose, onFinish, onNearEnd }: Aud
           {isLoading ? 'Loading...' : `${formatTime(currentTime)} / ${formatTime(duration)}`}
         </div>
         */}
-        <div style={{
-          fontSize: '1rem', 
-          color: '#ffffff',
-          width: '80px', 
-          textAlign: 'left' 
-        }}>
+        <div
+          className="audio-player__time"
+          style={{
+            fontSize: '1rem',
+            color: '#ffffff',
+            width: '80px',
+            textAlign: 'left',
+          }}
+        >
           {isLoading ? 'Loading...' : `${formatTime(currentTime)} / ${formatTime(duration)}`}
         </div>
         

@@ -1,70 +1,45 @@
 import React from 'react';
 import Link from 'next/link';
+import FooterSocial from '@/components/FooterSocial';
 
 export default function Footer() {
   return (
     <div style={{
       width: '100%',
-      marginTop: '4rem'
+      marginTop: '4rem',
     }}>
-      <footer style={{
-        padding: '2rem 2rem 2rem 6rem',
+      <div style={{
         maxWidth: '1400px',
-        margin: '0 auto'
+        margin: '0 auto',
+        width: '100%',
       }}>
-        <div style={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center'
-        }}>
-          <h1 style={{
-            fontSize: '1.5rem',
-            fontWeight: '400',
-            margin: 0
-          }}>
-            SoundTrek by U-Prag
-          </h1>
-          
-          <nav style={{
-            display: 'flex',
-            gap: '2rem',
-            marginRight: '80px'
-          }}>
-            <Link href="/about" style={{
-              color: '#999',
-              textDecoration: 'none',
-              fontSize: '0.875rem',
-              transition: 'color 0.2s'
-            }}>
-              about
+        <footer style={{ paddingTop: '2rem', paddingBottom: '2rem' }}>
+          <div className="site-footer-bar site-bar-row">
+            <Link href="/" style={{ textDecoration: 'none', color: 'inherit' }}>
+              <h1 style={{
+                fontSize: '1.5rem',
+                fontWeight: '400',
+                margin: 0,
+                cursor: 'pointer',
+              }}>
+                U-PRAG.CZ
+              </h1>
             </Link>
-            <Link href="/license" style={{
-              color: '#999',
-              textDecoration: 'none',
-              fontSize: '0.875rem',
-              transition: 'color 0.2s'
+
+            <div className="footer-social-wrap">
+              <FooterSocial />
+            </div>
+
+            <div className="site-bar-row-end" style={{
+              fontSize: '1rem',
+              color: '#ffffff',
+              whiteSpace: 'nowrap',
             }}>
-              license conditions
-            </Link>
-            <Link href="/references" style={{
-              color: '#999',
-              textDecoration: 'none',
-              fontSize: '0.875rem',
-              transition: 'color 0.2s'
-            }}>
-              references
-            </Link>
-            <Link href="/contact" style={{
-              color: '#999',
-              textDecoration: 'none',
-              fontSize: '0.875rem',
-              transition: 'color 0.2s'
-            }}>
-              contact
-            </Link>
-          </nav>
-        </div>
-      </footer>
+              © Every Single Soul
+            </div>
+          </div>
+        </footer>
+      </div>
     </div>
   );
-} 
+}

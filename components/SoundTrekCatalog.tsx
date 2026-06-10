@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import TracksTable from '@/components/TracksTable';
+import ResponsiveTracksTable from '@/components/ResponsiveTracksTable';
 import Image from 'next/image';
 
 const albumButtonStyle: React.CSSProperties = {
@@ -80,15 +80,18 @@ const albumButtons: { label: string; href: string; external?: boolean }[] = [
 type SoundTrekCatalogProps = {
   onPlayingTrackChange: (trackId: string | null) => void;
   onBackgroundTrackChange: (trackId: string | null) => void;
+  backgroundTrackId?: string | null;
 };
 
 export default function SoundTrekCatalog({
   onPlayingTrackChange,
   onBackgroundTrackChange,
+  backgroundTrackId = null,
 }: SoundTrekCatalogProps) {
   return (
     <>
       <div
+        className="catalog-root"
         style={{
           maxWidth: '1200px',
           margin: '0 auto',
@@ -99,19 +102,10 @@ export default function SoundTrekCatalog({
           padding: '32px 0',
         }}
       >
-        <div
-          style={{
-            display: 'flex',
-            gap: '32px',
-          }}
-        >
-          <div
-            style={{
-              width: '350px',
-              flexShrink: 0,
-            }}
-          >
+        <div className="album-section" style={{ display: 'flex', gap: '32px' }}>
+          <div className="album-cover-wrap" style={{ width: '350px', flexShrink: 0 }}>
             <div
+              className="album-cover-inner"
               style={{
                 width: '350px',
                 height: '350px',
@@ -135,6 +129,7 @@ export default function SoundTrekCatalog({
           </div>
 
           <div
+            className="album-desc-box"
             style={{
               flex: 1,
               minWidth: 0,
@@ -179,6 +174,7 @@ export default function SoundTrekCatalog({
         </div>
 
         <div
+          className="album-buttons-row"
           style={{
             display: 'flex',
             justifyContent: 'space-between',
@@ -190,6 +186,7 @@ export default function SoundTrekCatalog({
         >
           {albumButtons.map(({ label, href, external }) => (
             <button
+              className="album-button"
               key={label}
               type="button"
               onClick={() => handleAlbumButtonClick(href, external)}
@@ -202,9 +199,10 @@ export default function SoundTrekCatalog({
         </div>
       </div>
 
-      <TracksTable
+      <ResponsiveTracksTable
         onPlayingTrackChange={onPlayingTrackChange}
         onBackgroundTrackChange={onBackgroundTrackChange}
+        backgroundTrackId={backgroundTrackId}
       />
     </>
   );

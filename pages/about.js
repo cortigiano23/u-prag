@@ -25,7 +25,7 @@ export default function About() {
         minHeight: '100vh',
         flex: 1,
       }}>
-      <SiteHeader titleSuffix=" — about" activeItem="about" />
+      <SiteHeader activeItem="about" />
 
       {/* Content section */}
       <div style={{ 

@@ -9,6 +9,7 @@ import TrackDetailsModal from './TrackDetailsModal';
 interface TracksTableProps {
   onPlayingTrackChange?: (trackId: string | null) => void;
   onBackgroundTrackChange?: (trackId: string | null) => void;
+  backgroundTrackId?: string | null;
   showDownloads?: boolean;
   onMounted?: () => void;
 }
@@ -22,6 +23,7 @@ function getNextTrackId(currentId: string): string {
 export default function TracksTable({
   onPlayingTrackChange,
   onBackgroundTrackChange,
+  backgroundTrackId = null,
   showDownloads = true,
   onMounted,
 }: TracksTableProps) {
@@ -48,9 +50,11 @@ export default function TracksTable({
     (trackId: string | null) => {
       resetPlayButtons();
       setPlayingTrackId(trackId);
-      onBackgroundTrackChange?.(trackId);
+      if (trackId !== backgroundTrackId) {
+        onBackgroundTrackChange?.(trackId);
+      }
     },
-    [onBackgroundTrackChange],
+    [backgroundTrackId, onBackgroundTrackChange],
   );
 
   const closePlayer = useCallback(() => {
@@ -90,7 +94,7 @@ export default function TracksTable({
             <tr>
                 <th style={{ ...thBase, ...(showDownloads ? { width: '18%' } : {}) }}>Title</th>
                 <th style={{ ...thBase, textAlign: 'left', letterSpacing: 0, ...(showDownloads ? { width: '28px' } : {}) }}>Info</th>
-                <th style={{ ...thBase, textAlign: 'left', ...(showDownloads ? { width: '16%' } : {}) }}>Description</th>
+                <th style={{ ...thBase, textAlign: 'left', ...(showDownloads ? { width: '16%' } : {}) }}>Note</th>
                 <th style={{ ...thBase, textAlign: 'center', letterSpacing: 0, ...(showDownloads ? { width: '58px' } : {}) }}>Length</th>
                 <th style={{ ...thBase, textAlign: showDownloads ? 'center' : 'left', ...(showDownloads ? { width: '38px' } : {}) }}>BPM</th>
                 <th style={{ ...thBase, textAlign: showDownloads ? 'center' : 'left', ...(showDownloads ? { width: '64px' } : {}) }}>Video</th>

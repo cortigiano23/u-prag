@@ -1,7 +1,7 @@
 'use client';
 
-import React, { useRef, useLayoutEffect, useCallback } from 'react';
-import TracksTable from '@/components/TracksTable';
+import React, { useRef, useLayoutEffect, useCallback, useEffect, useState } from 'react';
+import ResponsiveTracksTable from '@/components/ResponsiveTracksTable';
 import LiveGigsTable from '@/components/LiveGigsTable';
 import Image from 'next/image';
 
@@ -71,12 +71,15 @@ const streamingButtons: { label: string; href: string; external?: boolean }[] = 
 type UpragCatalogProps = {
   onPlayingTrackChange: (trackId: string | null) => void;
   onBackgroundTrackChange: (trackId: string | null) => void;
+  backgroundTrackId?: string | null;
 };
 
 export default function UpragCatalog({
   onPlayingTrackChange,
   onBackgroundTrackChange,
+  backgroundTrackId = null,
 }: UpragCatalogProps) {
+  const [mounted, setMounted] = useState(false);
   const alignRef = useRef<HTMLDivElement>(null);
   const appleMusicRef = useRef<HTMLButtonElement>(null);
   const youtubeRef = useRef<HTMLButtonElement>(null);
@@ -84,10 +87,21 @@ export default function UpragCatalog({
 
   const alignPlayerColumns = useCallback(() => {
     const root = alignRef.current;
+    const table = root?.querySelector('.table-container--uprag') as HTMLElement | null;
+
+    if (typeof window !== 'undefined' && window.innerWidth < 768) {
+      if (table) {
+        table.style.setProperty('--description-align-offset', '0px');
+        table.style.setProperty('--bpm-align-offset', '0px');
+        table.style.setProperty('--video-align-offset', '0px');
+        table.style.setProperty('--featuring-align-offset', '0');
+      }
+      return;
+    }
+
     const appleMusicBtn = appleMusicRef.current;
     const youtubeBtn = youtubeRef.current;
     const soundcloudBtn = soundcloudRef.current;
-    const table = root?.querySelector('.table-container--uprag') as HTMLElement | null;
     if (!root || !table) return;
 
     const rootLeft = root.getBoundingClientRect().left;
@@ -131,7 +145,13 @@ export default function UpragCatalog({
     }
   }, []);
 
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   useLayoutEffect(() => {
+    if (!mounted) return;
+
     alignPlayerColumns();
 
     const root = alignRef.current;
@@ -147,11 +167,12 @@ export default function UpragCatalog({
       resizeObserver.disconnect();
       window.removeEventListener('resize', alignPlayerColumns);
     };
-  }, [alignPlayerColumns]);
+  }, [mounted, alignPlayerColumns]);
 
   return (
     <div
       ref={alignRef}
+      className="catalog-root"
       style={{
         maxWidth: '1200px',
         margin: '0 auto',
@@ -161,6 +182,7 @@ export default function UpragCatalog({
       <LiveGigsTable />
 
       <div
+        className="hero-banner"
         style={{
           width: '100%',
           height: '420px',
@@ -193,19 +215,23 @@ export default function UpragCatalog({
           padding: '0 0 32px',
         }}
       >
-        <div
+        <h2
           style={{
-            display: 'flex',
-            gap: '32px',
+            fontSize: '1.125rem',
+            fontWeight: 'normal',
+            textTransform: 'uppercase',
+            letterSpacing: '0.05em',
+            color: 'white',
+            marginBottom: '1rem',
           }}
         >
-          <div
-            style={{
-              width: '350px',
-              flexShrink: 0,
-            }}
-          >
+          New Album: Soundtrek
+        </h2>
+
+        <div className="album-section" style={{ display: 'flex', gap: '32px' }}>
+          <div className="album-cover-wrap" style={{ width: '350px', flexShrink: 0 }}>
             <div
+              className="album-cover-inner"
               style={{
                 width: '350px',
                 height: '350px',
@@ -229,6 +255,7 @@ export default function UpragCatalog({
           </div>
 
           <div
+            className="album-desc-box"
             style={{
               flex: 1,
               minWidth: 0,
@@ -268,6 +295,7 @@ export default function UpragCatalog({
         </div>
 
         <div
+          className="album-buttons-row"
           style={{
             display: 'flex',
             justifyContent: 'space-between',
@@ -279,6 +307,7 @@ export default function UpragCatalog({
         >
           {streamingButtons.map(({ label, href, external }) => (
             <button
+              className="album-button"
               key={label}
               ref={
                 label === 'LISTEN ON APPLE MUSIC'
@@ -300,9 +329,10 @@ export default function UpragCatalog({
         </div>
       </div>
 
-      <TracksTable
+      <ResponsiveTracksTable
         onPlayingTrackChange={onPlayingTrackChange}
         onBackgroundTrackChange={onBackgroundTrackChange}
+        backgroundTrackId={backgroundTrackId}
         showDownloads={false}
         onMounted={alignPlayerColumns}
       />

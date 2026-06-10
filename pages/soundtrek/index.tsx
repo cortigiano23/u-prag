@@ -34,6 +34,7 @@ export default function SoundTrekHome() {
         <SoundTrekCatalog
           onPlayingTrackChange={setPlayingTrackId}
           onBackgroundTrackChange={setBackgroundTrackId}
+          backgroundTrackId={backgroundTrackId}
         />
         <SiteFooter />
       </div>

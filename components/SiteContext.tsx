@@ -1,6 +1,12 @@
 'use client';
 
-import React, { createContext, useContext, useEffect, useState } from 'react';
+import React, {
+  createContext,
+  startTransition,
+  useContext,
+  useEffect,
+  useState,
+} from 'react';
 import { useRouter } from 'next/router';
 import {
   resolveContext,
@@ -19,13 +25,17 @@ export function SiteContextProvider({ children }: { children: React.ReactNode })
 
   useEffect(() => {
     if (!router.isReady) return;
-    setContext(resolveContext(router.pathname));
+    startTransition(() => {
+      setContext(resolveContext(router.pathname));
+    });
   }, [router.isReady, router.pathname]);
 
   useEffect(() => {
     const handleRouteChange = (url: string) => {
       const path = url.split('?')[0].split('#')[0];
-      setContext(resolveContext(path));
+      startTransition(() => {
+        setContext(resolveContext(path));
+      });
     };
 
     router.events.on('routeChangeComplete', handleRouteChange);

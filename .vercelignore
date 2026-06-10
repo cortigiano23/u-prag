@@ -1,0 +1,6 @@
+public/audio/*.mp3
+public/audio/*.wav
+public/audio/U-PRAG_SOUNDTREK_MP3.zip
+public/audio/U-PRAG_SOUNDTREK_WAV.zip
+old_web/
+.git/

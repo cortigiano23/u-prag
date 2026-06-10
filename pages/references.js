@@ -11,7 +11,7 @@ export default function References() {
       flexDirection: 'column',
       minHeight: '100vh'
     }}>
-      <SiteHeader titleSuffix=" — references" activeItem="about" />
+      <SiteHeader activeItem="about" />
 
       {/* Content section */}
       <div style={{ 

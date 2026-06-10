@@ -1,8 +1,17 @@
 import '@/styles/globals.css';
 import type { AppProps } from 'next/app';
-import { Analytics } from '@vercel/analytics/react';
-import { SpeedInsights } from '@vercel/speed-insights/next';
+import dynamic from 'next/dynamic';
 import { SiteContextProvider } from '@/components/SiteContext';
+
+const Analytics = dynamic(
+  () => import('@vercel/analytics/react').then((mod) => mod.Analytics),
+  { ssr: false },
+);
+
+const SpeedInsights = dynamic(
+  () => import('@vercel/speed-insights/next').then((mod) => mod.SpeedInsights),
+  { ssr: false },
+);
 
 export default function App({ Component, pageProps }: AppProps) {
   return (

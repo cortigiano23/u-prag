@@ -31,7 +31,7 @@ function NavLink({
 
 export default function SiteNav({ hideSoundTrek = false, activeItem }: SiteNavProps) {
   return (
-    <nav style={{ display: 'flex', gap: '1.5rem' }}>
+    <nav className="site-bar-row-end" style={{ display: 'flex', gap: '1.5rem' }}>
       {!hideSoundTrek && (
         <NavLink href="/soundtrek" active={activeItem === 'soundtrek'}>
           SoundTrek
