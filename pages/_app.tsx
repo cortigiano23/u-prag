@@ -4,7 +4,7 @@ import dynamic from 'next/dynamic';
 import { SiteContextProvider } from '@/components/SiteContext';
 
 const Analytics = dynamic(
-  () => import('@vercel/analytics/react').then((mod) => mod.Analytics),
+  () => import('@vercel/analytics/next').then((mod) => mod.Analytics),
   { ssr: false },
 );
 
