@@ -277,7 +277,7 @@ export default function UpragCatalog({
             Our music combines cinematic atmospheres, organic textures, and contemporary electronic sounds.
               <br />
               <br />
-              Introducing our latest album, SOUNDTREK. Released on May 27, 2026, it is a soundtrack to our lives — a soundtrack to a film that does not exist. The gradients accompanying the music visualize moods, emotions, and moments, inviting each listener to imagine their own story.
+              Introducing our latest album, SOUNDTREK. Released in 2026, it is a soundtrack to our lives — a soundtrack to a film that does not exist. The gradients accompanying the music visualize moods, emotions, and moments, inviting each listener to imagine their own story.
               <br />
               <br />
               Here you can explore the album, listen to individual tracks, and discover the story

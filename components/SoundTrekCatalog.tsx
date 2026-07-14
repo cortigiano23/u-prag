@@ -154,7 +154,7 @@ export default function SoundTrekCatalog({
               place where the music, artwork, and story come together.
               <br />
               <br />
-              Released on May 27, 2026, our last album is a soundtrack to our lives — a soundtrack
+             Our last album is a soundtrack to our lives — a soundtrack
               to a film that does not exist. 
               <br />
               The gradients accompanying the music visualize
